@@ -8,4 +8,8 @@ describe Coupon, type: :model do
      it { should validate_presence_of :percent_off }
   end
 
+  describe "relationships" do
+    it {should belong_to :merchant}
+  end
+
 end
