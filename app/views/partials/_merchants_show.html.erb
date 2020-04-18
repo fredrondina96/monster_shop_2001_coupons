@@ -6,7 +6,7 @@
 <%=@merchant.zip%></p>
 
 <p><%= link_to "View My Items", merchant_items_path if current_merchant?%></p><br>
-<p><%= link_to "View My Items", "/admin/merchant/#{@merchant.id}/items" if current_admin?%></p><br>
+<p><%= link_to "View My Items", "/admin/merchant/#{@merchant.id}/items" if current_admin?%></p>
 
 <h4>My Pending Orders</h4>
 <% @merchant.pending_orders.each do |order| %>
@@ -15,3 +15,9 @@
   <p>Number of My Items: <%=order.number_of_items_for_merchant(@merchant.id)%></p>
   <p>Value of My Items: <%=number_to_currency(order.total_cost_for_merchant(@merchant.id))%></p>
 <%end%>
+<br>
+<h4>My Current Coupons</h4>
+<% @merchant.coupons.each do |coupon| %>
+  <p><%= coupon.name %></p>
+<%end%>
+<p><%= link_to "New Coupon", merchant_coupon_new_path if current_merchant?%></p>
