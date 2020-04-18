@@ -17,6 +17,15 @@ RSpec.describe "As a merchant user", type: :feature do
     expect(page).to have_link("New Coupon")
     click_link("New Coupon")
     expect(current_path).to eq("/merchant/coupons/new")
+
+    fill_in :name, with: "20% off 5 items"
+    fill_in :percent_off, with: 20
+    fill_in :quantity_required, with: 5
+    click_button "Create Coupon"
+
+    expect(current_path).to eq("/merchant")
+    expect(page).to have_content("Current Coupons")
+    expect(page).to have_content("20% off 5 items")
 end
 
   after(:each) do

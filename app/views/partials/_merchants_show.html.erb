@@ -16,3 +16,8 @@
   <p>Number of My Items: <%=order.number_of_items_for_merchant(@merchant.id)%></p>
   <p>Value of My Items: <%=number_to_currency(order.total_cost_for_merchant(@merchant.id))%></p>
 <%end%>
+
+<h4>My Current Coupons</h4>
+<% @merchant.coupons.each do |coupon| %>
+  <p><%= coupon.name %></p>
+<%end%>
