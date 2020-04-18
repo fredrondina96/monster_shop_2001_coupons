@@ -28,6 +28,28 @@ RSpec.describe "As a merchant user", type: :feature do
     expect(page).to have_content("20% off 5 items")
 end
 
+it "I can create coupons but only with valid attributes" do
+  visit "/merchant/"
+
+  expect(page).to have_link("New Coupon")
+  click_link("New Coupon")
+  expect(current_path).to eq("/merchant/coupons/new")
+
+  fill_in :name, with: "30% off 10 items"
+  fill_in :percent_off, with: "-10"
+  fill_in :quantity_required, with: 5
+  click_button "Create Coupon"
+
+  expect(page).to have_content("Percent off must be greater than 0")
+
+  fill_in :name, with: ""
+  fill_in :percent_off, with: 10
+  fill_in :quantity_required, with: "-3"
+  click_button "Create Coupon"
+
+  expect(page).to have_content("Name can't be blank and Quantity required must be greater than or equal to 0")
+end
+
   after(:each) do
     User.destroy_all
     Merchant.destroy_all
