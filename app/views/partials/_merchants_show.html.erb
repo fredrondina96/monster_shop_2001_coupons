@@ -6,6 +6,7 @@
 <%=@merchant.zip%></p>
 
 <p><%= link_to "View My Items", merchant_items_path if current_merchant?%></p><br>
+<p><%= link_to "New Coupon", merchant_coupon_new_path if current_merchant?%></p><br>
 <p><%= link_to "View My Items", "/admin/merchant/#{@merchant.id}/items" if current_admin?%></p><br>
 
 <h4>My Pending Orders</h4>

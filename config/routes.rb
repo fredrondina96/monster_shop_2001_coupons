@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   namespace :merchant do
     get "/", to: "dashboard#index"
+    get "/coupons/new", to: "coupons#new", as: :coupon_new
     get "/items", to: "items#index"
     get "/items/new", to: "items#new"
     post "/items", to: "items#create"
