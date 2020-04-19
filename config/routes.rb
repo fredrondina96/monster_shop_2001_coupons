@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     get "/coupons/new", to: "coupons#new", as: :coupon_new
     post "/coupons", to: "coupons#create"
     get "/coupons", to: "coupons#index"
+    get "/coupons/:coupon_id/edit", to: "coupons#edit"
+    patch "/coupons/:coupon_id", to: "coupons#update"
+
     get "/items", to: "items#index"
     get "/items/new", to: "items#new"
     post "/items", to: "items#create"
