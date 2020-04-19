@@ -1,0 +1,12 @@
+<%= form_tag "/merchant/coupons/#{@coupon.id}", method: :patch do %>
+	<%= label_tag :name %>
+	<%= text_field_tag :name, "#{@coupon.name}" %>
+
+  <%= label_tag :percent_off %>
+  <%= text_field_tag :percent_off, "#{@coupon.percent_off}" %>
+
+	<%= label_tag :quantity_required %>
+	<%= text_field_tag :quantity_required, "#{@coupon.quantity_required}"%>
+
+  <%= submit_tag 'Update Coupon' %>
+<% end%>

@@ -19,5 +19,7 @@
 <h4>My Current Coupons</h4>
 <% @merchant.coupons.each do |coupon| %>
   <p><%= coupon.name %></p>
+  <p><%= link_to "Edit Coupon", "/merchant/coupons/#{coupon.id}/edit"%></p>
+  <br>
 <%end%>
 <p><%= link_to "New Coupon", merchant_coupon_new_path if current_merchant?%></p>
