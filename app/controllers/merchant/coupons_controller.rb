@@ -8,6 +8,16 @@ class Merchant::CouponsController < Merchant::BaseController
     @coupon = Coupon.find(params[:coupon_id])
   end
 
+  def destroy
+    coupon = Coupon.find(params[:coupon_id])
+      if coupon.destroy
+        flash[:success] = "Coupon Deleted"
+      else
+        flash[:error] = coupon.errors.full_messages.to_sentence
+      end
+    redirect_to "/merchant"
+  end
+
   def create
     merchant = Merchant.find(current_user.merchant.id)
     @coupon = merchant.coupons.new(coupon_params)
