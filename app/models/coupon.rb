@@ -5,4 +5,8 @@ class Coupon < ApplicationRecord
   validates_numericality_of :percent_off, greater_than: 0, only_integer: true
   validates_numericality_of :quantity_required, greater_than_or_equal_to: 0, only_integer: true
 
+  def discout
+    (((100 - percent_off).to_f)/100)
+  end
+
 end

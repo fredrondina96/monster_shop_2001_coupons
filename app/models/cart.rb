@@ -36,6 +36,11 @@ class Cart
   end
 
   def subtotal(item)
+    item.merchant.coupons.each do |coupon|
+      if @contents[item.id.to_s] >= coupon.quantity_required
+        return (item.price * @contents[item.id.to_s]) * coupon.discout
+      end
+    end
     item.price * @contents[item.id.to_s]
   end
 
@@ -43,6 +48,10 @@ class Cart
     @contents.sum do |item_id,quantity|
       Item.find(item_id).price * quantity
     end
+  end
+
+  def discount_check(item)
+    @contents[item.id.to_s]
   end
 
 end
