@@ -36,7 +36,7 @@ class Cart
   end
 
   def subtotal(item)
-    item.merchant.coupons.each do |coupon|
+    item.merchant.coupons.order(percent_off: :desc).each do |coupon|
       if @contents[item.id.to_s] >= coupon.quantity_required
         return (item.price * @contents[item.id.to_s]) * coupon.discount
       end
