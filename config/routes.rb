@@ -27,11 +27,12 @@ Rails.application.routes.draw do
   namespace :merchant do
     get "/", to: "dashboard#index"
     get "/coupons/new", to: "coupons#new", as: :coupon_new
-    post "/coupons", to: "coupons#create"
-    get "/coupons", to: "coupons#index"
-    get "/coupons/:coupon_id/edit", to: "coupons#edit"
-    patch "/coupons/:coupon_id", to: "coupons#update"
-    delete "/coupons/:coupon_id", to: "coupons#destroy"
+    resources :coupons, except: [:new]
+      # post "/coupons", to: "coupons#create"
+      # get "/coupons", to: "coupons#index"
+      # get "/coupons/:coupon_id/edit", to: "coupons#edit"
+      # patch "/coupons/:coupon_id", to: "coupons#update"
+      # delete "/coupons/:coupon_id", to: "coupons#destroy"
 
     get "/items", to: "items#index"
     get "/items/new", to: "items#new"

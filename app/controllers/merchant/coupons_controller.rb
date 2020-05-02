@@ -5,11 +5,11 @@ class Merchant::CouponsController < Merchant::BaseController
   end
 
   def edit
-    @coupon = Coupon.find(params[:coupon_id])
+    @coupon = Coupon.find(params[:id])
   end
 
   def destroy
-    coupon = Coupon.find(params[:coupon_id])
+    coupon = Coupon.find(params[:id])
       if coupon.destroy
         flash[:success] = "Coupon Deleted"
       else
@@ -31,7 +31,7 @@ class Merchant::CouponsController < Merchant::BaseController
   end
 
   def update
-    @coupon = Coupon.find(params[:coupon_id])
+    @coupon = Coupon.find(params[:id])
       if @coupon.update(coupon_params)
         flash[:sucess] = "#{@coupon.name} has been updated"
         redirect_to "/merchant"
